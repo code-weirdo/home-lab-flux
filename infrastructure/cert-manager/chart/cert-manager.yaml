@@ -36,5 +36,5 @@ spec:
         name: godaddy-webhook
         namespace: flux-system
       interval: 5m
-    values:
-      groupName: acme.myhaus.co.za
+  values:
+    groupName: acme.myhaus.co.za
