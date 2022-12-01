@@ -8,3 +8,14 @@ spec:
   interval: 10m
   url: https://charts.jetstack.io/
   timeout: 3m
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: godaddy-webhook
+  namespace: flux-system
+spec:
+  interval: 1m
+  url: https://fred78290.github.io/cert-manager-webhook-godaddy/
+  timeout: 10s
+
