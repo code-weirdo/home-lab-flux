@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: cert-manager
 resources:
 - crds/kustomization.yaml
+- chart/kustomization.yaml
