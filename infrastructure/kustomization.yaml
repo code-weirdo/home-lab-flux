@@ -3,4 +3,5 @@ kind: Kustomization
 resources:
 - helm-repositories/helm-repositories.yaml
 - metallb
+- longhorn
 - cert-manager
