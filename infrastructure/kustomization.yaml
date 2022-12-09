@@ -4,4 +4,4 @@ resources:
 - helm-repositories/helm-repositories.yaml
 - metallb
 - longhorn
-- cert-manager
+- cert-manager/namespace/namespace.yaml
