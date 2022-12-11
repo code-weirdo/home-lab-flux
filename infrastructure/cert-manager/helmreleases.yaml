@@ -38,5 +38,7 @@ spec:
         name: godaddy-webhook
         namespace: flux-system
       interval: 5m
+  dependsOn:
+    - name: cert-manager
   values:
     groupName: acme.myhaus.co.za
