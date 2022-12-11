@@ -5,8 +5,3 @@ resources:
 - metallb
 - cert-manager
 - longhorn
-spec:
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-gpg
