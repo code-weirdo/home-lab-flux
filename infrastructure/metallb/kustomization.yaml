@@ -4,3 +4,4 @@ namespace: metallb-system
 resources:
 - namespace.yaml
 - helmrelease.yaml
+- ipaddresspool.yaml
