@@ -20,7 +20,7 @@ spec:
           - name: TZ
             value: "Africa/Johannesburg"
           name: home-assistant
-          image: home-assistant/home-assistant:2022.12.4
+          image: homeassistant/home-assistant:2022.12.4
           ports:
             - containerPort: 8123
           volumeMounts:
