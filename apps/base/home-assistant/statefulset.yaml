@@ -27,7 +27,7 @@ spec:
               name: config
   volumeClaimTemplates:
   - metadata:
-      name: home-assistant
+      name: config
     spec:
       accessModes: [ "ReadWriteOnce" ]
       storageClassName: "longhorn"
