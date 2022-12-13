@@ -1,20 +1,19 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: home-assistant
-  namespace: home-assistant
-  labels:
-    app: home-assistant
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: home-assistant
+      app.kubernetes.io/name: home-assistant
+  serviceName: "home-assistant"
+  replicas: 1
   template:
     metadata:
       labels:
-        app: home-assistant
+        app.kubernetes.io/name: home-assistant
     spec:
+      terminationGracePeriodSeconds: 10
       containers:
         - env:
           - name: TZ
@@ -26,8 +25,12 @@ spec:
           volumeMounts:
             - mountPath: "/config"
               name: config
-      hostNetwork: true
-      volumes:
-        - name: config
-          persistentVolumeClaim:
-            claimName: home-assistant
+  volumeClaimTemplates:
+  - metadata:
+      name: home-assistant
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "longhorn"
+      resources:
+        requests:
+          storage: 10Gi
