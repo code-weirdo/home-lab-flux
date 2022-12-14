@@ -3,5 +3,4 @@ kind: Kustomization
 namespace: home-assistant
 resources:
 - namespace.yaml
-- statefulset.yaml
-- service.yaml
+- helmrelease.yaml

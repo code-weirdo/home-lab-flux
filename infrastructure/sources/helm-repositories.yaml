@@ -38,3 +38,13 @@ spec:
   interval: 10m
   url: https://fred78290.github.io/cert-manager-webhook-godaddy/
   timeout: 1m
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: k8s-at-home-charts
+  namespace: flux-system
+spec:
+  interval: 10m
+  url: https://k8s-at-home.com/charts/
+  timeout: 1m
