@@ -40,6 +40,16 @@ spec:
               values:
               - emqx
           topologyKey: "kubernetes.io/hostname"
+    emqxConfig:
+      EMQX_ALLOW_ANONYMOUS: "false"
+      EMQX_LOADED_MODULES: "emqx_mod_presence,emqx_mod_acl_internal,emqx_mod_topic_metrics"
+      EMQX_LOADED_PLUGINS: "emqx_management,emqx_recon,emqx_retainer,emqx_dashboard,emqx_rule_engine,emqx_auth_mnesia,emqx_prometheus"
+    emqxAclConfig: >
+      {allow, {user, "dashboard"}, subscribe, ["$SYS/#"]}.
+      {allow, {ipaddr, "127.0.0.1"}, pubsub, ["$SYS/#", "#"]}.
+      {allow, all, subscribe, ["$SYS/#", {eq, "#"}]}.
+      {allow, all}.
+
     resources:
       limits:
         memory: 512Mi
@@ -57,3 +67,7 @@ spec:
         tls:
         - hosts:
           - emqx.myhaus.co.za
+  valuesFrom:
+  - kind: Secret
+    name: "emqx-helm-values"
+    optional: false
