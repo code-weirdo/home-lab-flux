@@ -19,12 +19,28 @@ spec:
           - name: TZ
             value: "Africa/Johannesburg"
           name: home-assistant
-          image: homeassistant/home-assistant:2022.12.4
+          image: homeassistant/home-assistant:2022.12.8
           ports:
             - containerPort: 8123
+          livenessProbe:
+            httpGet:
+              path: /
+              port: api
+              scheme: HTTP
+            initialDelaySeconds: 60
+            failureThreshold: 3
+            timeoutSeconds: 10
+          startupProbe:
+            httpGet:
+              path: /
+              port: api
+              scheme: HTTP
+            failureThreshold: 6
+            periodSeconds: 10
           volumeMounts:
             - mountPath: "/config"
               name: config
+
   volumeClaimTemplates:
   - metadata:
       name: config
