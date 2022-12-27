@@ -41,7 +41,7 @@ spec:
               - emqx
           topologyKey: "kubernetes.io/hostname"
     emqxConfig:
-      EMQX_AUTHENTICATION__1: '{enabled=true,mechanism="password_based",backend="built_in_database",username="tasmota",password="test"'
+      EMQX_AUTHENTICATION__1: '{enabled=true,mechanism="password_based",backend="built_in_database",username="tasmota",password="test"}'
     resources:
       limits:
         memory: 512Mi
