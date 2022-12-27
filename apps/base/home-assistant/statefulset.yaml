@@ -25,7 +25,7 @@ spec:
           livenessProbe:
             httpGet:
               path: /
-              port: api
+              port: 8123
               scheme: HTTP
             initialDelaySeconds: 60
             failureThreshold: 3
@@ -33,7 +33,7 @@ spec:
           startupProbe:
             httpGet:
               path: /
-              port: api
+              port: 8123
               scheme: HTTP
             failureThreshold: 6
             periodSeconds: 10
