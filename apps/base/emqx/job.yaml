@@ -1,3 +1,7 @@
+# Runs a job that registers a user the first time EMQX comes up.
+# It uses the old EMQX_AUTH__USER__1__USERNAME and EMQX_AUTH__USER__1__PASSWORD
+# environment variables that EMQX used to use to register users.
+# We might need to extend this script if we ever need more users to be bootstrapped.
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -8,7 +12,7 @@ data:
   create-users: |
     RESPONSE=`curl -s "http://admin:$EMQX_DASHBOARD__DEFAULT_PASSWORD@emqx-headless:18083/api/v5/authentication/password_based:built_in_database/users" -H 'Content-Type: application/json' -d '{"user_id":"'"$EMQX_AUTH__USER__1__USERNAME"'","password":"'"$EMQX_AUTH__USER__1__PASSWORD"'"}'`
     echo $RESPONSE
-    if [[ "$RESPONSE" == *"tasmota"* || "$RESPONSE" == *"User already exists"* ]]; then
+    if [[ "$RESPONSE" == *"$EMQX_AUTH__USER__1__USERNAME"* || "$RESPONSE" == *"User already exists"* ]]; then
       exit 0
     fi
     exit 1
