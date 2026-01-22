@@ -19,7 +19,7 @@ spec:
           - name: TZ
             value: "Africa/Johannesburg"
           name: home-assistant
-          image: homeassistant/home-assistant:2022.12.8
+          image: homeassistant/home-assistant:2026.1
           ports:
             - containerPort: 8123
           livenessProbe:
@@ -40,7 +40,6 @@ spec:
           volumeMounts:
             - mountPath: "/config"
               name: config
-
   volumeClaimTemplates:
   - metadata:
       name: config
