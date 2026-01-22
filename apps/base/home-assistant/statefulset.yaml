@@ -22,21 +22,21 @@ spec:
           image: homeassistant/home-assistant:2026.1
           ports:
             - containerPort: 8123
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 8123
-              scheme: HTTP
-            initialDelaySeconds: 60
-            failureThreshold: 3
-            timeoutSeconds: 10
-          startupProbe:
-            httpGet:
-              path: /
-              port: 8123
-              scheme: HTTP
-            failureThreshold: 6
-            periodSeconds: 10
+          # livenessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: 8123
+          #     scheme: HTTP
+          #   initialDelaySeconds: 60
+          #   failureThreshold: 3
+          #   timeoutSeconds: 10
+          # startupProbe:
+          #   httpGet:
+          #     path: /
+          #     port: 8123
+          #     scheme: HTTP
+          #   failureThreshold: 6
+          #   periodSeconds: 10
           volumeMounts:
             - mountPath: "/config"
               name: config
