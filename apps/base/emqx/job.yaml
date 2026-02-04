@@ -18,6 +18,41 @@ data:
     exit 1
 ---
 apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: emqx-create-users
+spec:
+  concurrencyPolicy: Forbid
+  schedule: "0 0 * * *"
+  successfulJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 300
+      backoffLimit: 3
+      ttlSecondsAfterFinished: 60
+      template:
+        metadata:
+          name: emqx-create-users
+        spec:
+          containers:
+          - command: ["sh", "/create-users"]
+            envFrom:
+            - configMapRef:
+                name: emqx-env
+            image: curlimages/curl
+            imagePullPolicy: IfNotPresent
+            name: emx-create-users
+            volumeMounts:
+              - name: emqx-create-users
+                mountPath: /create-users
+                subPath: create-users
+          restartPolicy: Never
+          volumes:
+            - name: emqx-create-users
+              configMap:
+                name: emqx-create-users
+---
+apiVersion: batch/v1
 kind: Job
 metadata:
   name: emqx-create-users
