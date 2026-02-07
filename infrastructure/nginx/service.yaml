@@ -4,5 +4,5 @@ metadata:
   name: ingress-nginx-controller
   namespace: ingress-nginx
 spec:
-  loadBalancerIp: 192.168.10.48
+  loadBalancerIp: 192.168.1.48
   type: LoadBalancer
